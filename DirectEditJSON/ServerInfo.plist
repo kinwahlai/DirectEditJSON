@@ -7,6 +7,6 @@
 	<key>kServerUsername</key>
 	<string></string>
 	<key>kServerDBURLString</key>
-	<string>http://kinwahlai.iriscouch.com/grocery-sync</string>
+	<string>ENTER YOUR DB URL - http://testing.iriscouch.com/grocery-sync</string>
 </dict>
 </plist>

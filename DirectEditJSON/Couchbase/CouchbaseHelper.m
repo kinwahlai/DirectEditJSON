@@ -30,8 +30,13 @@ static dispatch_once_t once_token = 0;
             NSLog(@"Couldn't open database - %@",error.localizedDescription);
         }
         [self loadServerInfoFromPlist];
+        if ([[_serverInfo objectForKey:@"kServerDBURLString"] hasPrefix:@"ENTER"]) {
+            UIAlertView *alert = [[UIAlertView alloc]initWithTitle:@"Missing DB URL" message:@"Please enter your db url in serverinfo.plist" delegate:nil cancelButtonTitle:nil otherButtonTitles:@"OK", nil];
+            [alert show];
+        } else {
+            [self setupSync];
+        }
         [self setupViews];
-        [self setupSync];
     }
     return self;
 }
