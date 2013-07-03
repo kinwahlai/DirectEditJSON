@@ -10,11 +10,10 @@
 #import <CouchbaseLite/CouchbaseLite.h>
 #import "SyncManager.h"
 
-#define kServerDBURLString @"http://kinwahlai.iriscouch.com/grocery-sync"
-
 @interface CouchbaseHelper () <SyncManagerDelegate>
 {
     SyncManager* _syncManager;
+    NSDictionary *_serverInfo;
 }
 @end
 
@@ -30,6 +29,7 @@ static dispatch_once_t once_token = 0;
         if (!self.database) {
             NSLog(@"Couldn't open database - %@",error.localizedDescription);
         }
+        [self loadServerInfoFromPlist];
         [self setupViews];
         [self setupSync];
     }
@@ -47,6 +47,12 @@ static dispatch_once_t once_token = 0;
 +(void)setSharedInstance:(CouchbaseHelper *)instance {
     once_token = 0; // resets the once_token so dispatch_once will run again
     _sharedInstance = instance;
+}
+
+-(void)loadServerInfoFromPlist
+{
+    NSString* path = [[NSBundle mainBundle] pathForResource:@"ServerInfo" ofType:@"plist"];
+    _serverInfo = [[NSMutableDictionary alloc] initWithContentsOfFile:path];
 }
 
 #pragma mark -
@@ -77,33 +83,12 @@ static dispatch_once_t once_token = 0;
     _syncManager.delegate = self;
     // Configure replication:
     _syncManager.continuous = YES;
-    _syncManager.syncURL = [NSURL URLWithString: kServerDBURLString];
+    _syncManager.syncURL = [NSURL URLWithString: [_serverInfo objectForKey:@"kServerDBURLString"]];
 }
 
 -(bool)syncManagerShouldPromptForLogin:(SyncManager *)manager
 {
-    [manager setUsername:@"admin" password:@"p@ssword!"];
+    [manager setUsername:[_serverInfo objectForKey:@"kServerUsername"] password:[_serverInfo objectForKey:@"kServerPassword"]];
     return false;
-}
-
-#pragma mark -
-#pragma mark Handle auto login
-
-- (void) saveLocalStateForUsername:(NSString*)username password:(NSString*)password {
-    NSError* error;
-    if (![self.database putLocalDocument: @{@"username": username, @"password":password}
-                                  withID: @"loginState"
-                                   error: &error])
-        NSLog(@"Warning: Couldn't save local doc: %@", error);
-}
-
-- (NSDictionary*) loadLocalState {
-    return [self.database getLocalDocumentWithID: @"loginState"];
-}
-
-- (void) deleteLocalState
-{
-    NSError *error;
-    [self.database deleteLocalDocumentWithID:@"loginState" error:&error];
 }
 @end

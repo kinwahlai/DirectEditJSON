@@ -33,6 +33,7 @@
 		8BBD8A52178411C30059AC5B /* libsqlite3.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 8BBD8A2417840EE50059AC5B /* libsqlite3.dylib */; };
 		8BBD8A5E178418CB0059AC5B /* CBLJSONValidator.m in Sources */ = {isa = PBXBuildFile; fileRef = 8BBD8A57178418CB0059AC5B /* CBLJSONValidator.m */; };
 		8BBD8A63178419D80059AC5B /* JavaScriptCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8BBD8A62178419D80059AC5B /* JavaScriptCore.framework */; };
+		8BE78DCF17842BDC0029C88A /* ServerInfo.plist in Resources */ = {isa = PBXBuildFile; fileRef = 8BE78DCE17842BDC0029C88A /* ServerInfo.plist */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -83,6 +84,7 @@
 		8BBD8A56178418CB0059AC5B /* CBLJSONValidator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CBLJSONValidator.h; sourceTree = "<group>"; };
 		8BBD8A57178418CB0059AC5B /* CBLJSONValidator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CBLJSONValidator.m; sourceTree = "<group>"; };
 		8BBD8A62178419D80059AC5B /* JavaScriptCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = JavaScriptCore.framework; path = System/Library/Frameworks/JavaScriptCore.framework; sourceTree = SDKROOT; };
+		8BE78DCE17842BDC0029C88A /* ServerInfo.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = ServerInfo.plist; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -167,6 +169,7 @@
 				8BBD89FB17840E150059AC5B /* DetailViewController.m */,
 				8BBD89FD17840E150059AC5B /* Images.xcassets */,
 				8BBD89E917840E150059AC5B /* Supporting Files */,
+				8BE78DCE17842BDC0029C88A /* ServerInfo.plist */,
 			);
 			path = DirectEditJSON;
 			sourceTree = "<group>";
@@ -302,6 +305,7 @@
 			files = (
 				8BBD89FE17840E150059AC5B /* Images.xcassets in Resources */,
 				8BBD89ED17840E150059AC5B /* InfoPlist.strings in Resources */,
+				8BE78DCF17842BDC0029C88A /* ServerInfo.plist in Resources */,
 				8BBD89F617840E150059AC5B /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -545,6 +549,7 @@
 				8BBD8A1617840E150059AC5B /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		8BBD8A1717840E150059AC5B /* Build configuration list for PBXNativeTarget "DirectEditJSONTests" */ = {
 			isa = XCConfigurationList;
@@ -553,6 +558,7 @@
 				8BBD8A1917840E150059AC5B /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
