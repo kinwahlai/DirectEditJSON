@@ -31,9 +31,7 @@
 		8BBD8A2E17840F300059AC5B /* LoginController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8BBD8A2A17840F300059AC5B /* LoginController.m */; };
 		8BBD8A2F17840F300059AC5B /* SyncManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 8BBD8A2C17840F300059AC5B /* SyncManager.m */; };
 		8BBD8A52178411C30059AC5B /* libsqlite3.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 8BBD8A2417840EE50059AC5B /* libsqlite3.dylib */; };
-		8BBD8A5D178418CB0059AC5B /* CBLJSFunction.m in Sources */ = {isa = PBXBuildFile; fileRef = 8BBD8A55178418CB0059AC5B /* CBLJSFunction.m */; };
 		8BBD8A5E178418CB0059AC5B /* CBLJSONValidator.m in Sources */ = {isa = PBXBuildFile; fileRef = 8BBD8A57178418CB0059AC5B /* CBLJSONValidator.m */; };
-		8BBD8A61178418CB0059AC5B /* README.md in Resources */ = {isa = PBXBuildFile; fileRef = 8BBD8A5C178418CB0059AC5B /* README.md */; };
 		8BBD8A63178419D80059AC5B /* JavaScriptCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8BBD8A62178419D80059AC5B /* JavaScriptCore.framework */; };
 /* End PBXBuildFile section */
 
@@ -82,11 +80,8 @@
 		8BBD8A2B17840F300059AC5B /* SyncManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SyncManager.h; sourceTree = "<group>"; };
 		8BBD8A2C17840F300059AC5B /* SyncManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SyncManager.m; sourceTree = "<group>"; };
 		8BBD8A50178411480059AC5B /* libsqlite3.0.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libsqlite3.0.dylib; path = usr/lib/libsqlite3.0.dylib; sourceTree = SDKROOT; };
-		8BBD8A54178418CB0059AC5B /* CBLJSFunction.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CBLJSFunction.h; sourceTree = "<group>"; };
-		8BBD8A55178418CB0059AC5B /* CBLJSFunction.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CBLJSFunction.m; sourceTree = "<group>"; };
 		8BBD8A56178418CB0059AC5B /* CBLJSONValidator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CBLJSONValidator.h; sourceTree = "<group>"; };
 		8BBD8A57178418CB0059AC5B /* CBLJSONValidator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CBLJSONValidator.m; sourceTree = "<group>"; };
-		8BBD8A5C178418CB0059AC5B /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = README.md; sourceTree = "<group>"; };
 		8BBD8A62178419D80059AC5B /* JavaScriptCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = JavaScriptCore.framework; path = System/Library/Frameworks/JavaScriptCore.framework; sourceTree = SDKROOT; };
 /* End PBXFileReference section */
 
@@ -222,11 +217,8 @@
 		8BBD8A53178418CB0059AC5B /* Extras */ = {
 			isa = PBXGroup;
 			children = (
-				8BBD8A54178418CB0059AC5B /* CBLJSFunction.h */,
-				8BBD8A55178418CB0059AC5B /* CBLJSFunction.m */,
 				8BBD8A56178418CB0059AC5B /* CBLJSONValidator.h */,
 				8BBD8A57178418CB0059AC5B /* CBLJSONValidator.m */,
-				8BBD8A5C178418CB0059AC5B /* README.md */,
 			);
 			name = Extras;
 			path = "vendor/couchbase-ios-lite/Extras";
@@ -310,7 +302,6 @@
 			files = (
 				8BBD89FE17840E150059AC5B /* Images.xcassets in Resources */,
 				8BBD89ED17840E150059AC5B /* InfoPlist.strings in Resources */,
-				8BBD8A61178418CB0059AC5B /* README.md in Resources */,
 				8BBD89F617840E150059AC5B /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -337,7 +328,6 @@
 				8BBD8A5E178418CB0059AC5B /* CBLJSONValidator.m in Sources */,
 				8BBD8A2D17840F300059AC5B /* CouchbaseHelper.m in Sources */,
 				8BBD89FC17840E150059AC5B /* DetailViewController.m in Sources */,
-				8BBD8A5D178418CB0059AC5B /* CBLJSFunction.m in Sources */,
 				8BBD8A2E17840F300059AC5B /* LoginController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

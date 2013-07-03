@@ -9,6 +9,8 @@
 #import "DetailViewController.h"
 #import <CouchbaseLite/CouchbaseLite.h>
 #import <CouchbaseLite/CBLJSON.h>
+#import "CBLJSONValidator.h"
+#import "CouchbaseHelper.h"
 
 @interface DetailViewController ()
 {
@@ -51,6 +53,7 @@
     [super viewDidLoad];
 	self.navigationItem.leftBarButtonItem = self.editButtonItem;
     [self configureView];
+    self.jsonTextView.editable = NO;
 }
 
 - (void)didReceiveMemoryWarning
@@ -87,9 +90,13 @@
             UIBarButtonItem *save = [[UIBarButtonItem alloc]initWithBarButtonSystemItem:UIBarButtonSystemItemSave target:self action:@selector(saveEdit)];
             
             self.navigationItem.rightBarButtonItems = @[cancel,save];
+            
+            self.jsonTextView.editable = YES;
         } else {
             originalJSONString = nil;
             self.navigationItem.rightBarButtonItems = nil;
+            
+            self.jsonTextView.editable = NO;
         }
     }
 }
@@ -105,7 +112,18 @@
 
 -(void)saveEdit
 {
-    
+    NSError *error;
+    NSDictionary *jsonDict = [CBLJSON JSONObjectWithData:[self.jsonTextView.text dataUsingEncoding:NSUTF8StringEncoding]
+                                                 options: CBLJSONReadingAllowFragments
+                                                   error: &error];
+    if (!error) {
+        error = nil;
+        CBLQueryRow *row = (CBLQueryRow *)self.detailItem;
+        [row.document putProperties:jsonDict error:&error];
+        if (!error) {
+            NSLog(@"new revision added");
+        }
+    }
 }
 
 @end

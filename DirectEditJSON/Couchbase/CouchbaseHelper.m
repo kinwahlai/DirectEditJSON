@@ -10,8 +10,6 @@
 #import <CouchbaseLite/CouchbaseLite.h>
 #import "SyncManager.h"
 
-
-//#define kServerDBURLString @"http://ec2-54-215-77-94.us-west-1.compute.amazonaws.com:4444/crazestage"
 #define kServerDBURLString @"http://kinwahlai.iriscouch.com/grocery-sync"
 
 @interface CouchbaseHelper () <SyncManagerDelegate>
@@ -28,7 +26,7 @@ static dispatch_once_t once_token = 0;
     self = [super init];
     if (self) {
         NSError* error;
-        _database = [[CBLManager sharedInstance] createDatabaseNamed:@"craze" error:&error];
+        _database = [[CBLManager sharedInstance] createDatabaseNamed:@"grocery" error:&error];
         if (!self.database) {
             NSLog(@"Couldn't open database - %@",error.localizedDescription);
         }
