@@ -12,11 +12,12 @@
 
 #import "CouchbaseHelper.h"
 #import <CouchbaseLite/CouchbaseLite.h>
+#import <CouchbaseLite/CBLUITableSource.h>
 
-@interface MasterViewController () {
+@interface MasterViewController () <CBLUITableDelegate> {
     NSMutableArray *_objects;
 }
-@property (strong,nonatomic) CBLQuery *currentQuery;
+@property (strong,nonatomic) CBLUITableSource *liveDataSource;
 @end
 
 @implementation MasterViewController
@@ -36,9 +37,11 @@
 
 //    UIBarButtonItem *addButton = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemAdd target:self action:@selector(insertNewObject:)];
 //    self.navigationItem.rightBarButtonItem = addButton;
-    self.detailViewController = (DetailViewController *)[[self.splitViewController.viewControllers lastObject] topViewController];
     
-    self.currentQuery = [[CouchbaseHelper sharedInstance] queryAllDocuments];
+    self.detailViewController = (DetailViewController *)[[self.splitViewController.viewControllers lastObject] topViewController];
+
+    self.liveDataSource = (CBLUITableSource *)self.tableView.dataSource;
+    self.liveDataSource.query = [[[CouchbaseHelper sharedInstance] queryAllDocuments] asLiveQuery];
 }
 
 - (void)didReceiveMemoryWarning
@@ -59,61 +62,14 @@
  */
 
 #pragma mark - Table View
-
-- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
+-(void)couchTableSource:(CBLUITableSource *)source willUseCell:(UITableViewCell *)cell forRow:(CBLQueryRow *)row
 {
-    return 1;
-}
-
-- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
-{
-    return self.currentQuery.rows.count;
-}
-
-- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"Cell" forIndexPath:indexPath];
-    
-    CBLQueryRow *row = [self.currentQuery.rows rowAtIndex:indexPath.row];
     cell.textLabel.text = [row document].documentID;
-    return cell;
 }
-
-- (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    // Return NO if you do not want the specified item to be editable.
-    return NO;
-}
-
-- (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    if (editingStyle == UITableViewCellEditingStyleDelete) {
-        [_objects removeObjectAtIndex:indexPath.row];
-        [tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationFade];
-    } else if (editingStyle == UITableViewCellEditingStyleInsert) {
-        // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view.
-    }
-}
-
-/*
-// Override to support rearranging the table view.
-- (void)tableView:(UITableView *)tableView moveRowAtIndexPath:(NSIndexPath *)fromIndexPath toIndexPath:(NSIndexPath *)toIndexPath
-{
-}
-*/
-
-/*
-// Override to support conditional rearranging of the table view.
-- (BOOL)tableView:(UITableView *)tableView canMoveRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    // Return NO if you do not want the item to be re-orderable.
-    return YES;
-}
-*/
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    CBLQueryRow *row = [self.currentQuery.rows rowAtIndex:indexPath.row];
+    CBLQueryRow *row = [self.liveDataSource.query.rows rowAtIndex:indexPath.row];
     self.detailViewController.detailItem = row;
 }
 
