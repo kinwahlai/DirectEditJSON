@@ -64,7 +64,7 @@
 #pragma mark - Table View
 -(void)couchTableSource:(CBLUITableSource *)source willUseCell:(UITableViewCell *)cell forRow:(CBLQueryRow *)row
 {
-    cell.textLabel.text = [row document].documentID;
+    cell.textLabel.text = [NSString stringWithFormat:@"%@ [%@]",[row document].abbreviatedID,[row document].properties[@"type"]];
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
