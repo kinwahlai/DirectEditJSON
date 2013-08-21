@@ -23,6 +23,10 @@
 - (NSArray*) createReplicationsBetween: (CBLDatabase*)database
                                    and: (NSURL*)otherDbURL
                            exclusively: (bool)exclusively           __attribute__((nonnull(1)));
+#if DEBUG // for unit tests only
+- (CBLDatabase*) createEmptyDatabaseNamed: (NSString*)name error: (NSError**)outError;
+#endif
+
 @end
 
 
@@ -89,6 +93,7 @@
 
 @interface CBLQueryRow ()
 - (instancetype) initWithDocID: (NSString*)docID
+                      sequence: (SequenceNumber)sequence
                            key: (id)key
                          value: (id)value
                  docProperties: (NSDictionary*)docProperties;

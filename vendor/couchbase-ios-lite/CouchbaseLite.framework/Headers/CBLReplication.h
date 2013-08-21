@@ -63,14 +63,21 @@ typedef enum {
 /** Should the replication operate continuously, copying changes as soon as the source database is modified? (Defaults to NO). */
 @property (nonatomic) bool continuous;
 
-/** Path of an optional filter function to run on the source server.
+/** Name of an optional filter function to run on the source server.
     Only documents for which the function returns true are replicated.
-    The path looks like "designdocname/filtername". */
+    * For a pull replication, the name looks like "designdocname/filtername".
+    * For a push replication, use the name under which you registered the filter with the CBLDatabase. */
 @property (nonatomic, copy) NSString* filter;
 
 /** Parameters to pass to the filter function.
     Should map strings to strings. */
 @property (nonatomic, copy) NSDictionary* query_params;
+
+/** List of Sync Gateway channel names to filter by; a nil value means no filtering, i.e. all
+    available channels will be synced.
+    Only valid for pull replications whose source database is on a Couchbase Sync Gateway server.
+    (This is a convenience that just reads or changes the values of .filter and .query_params.) */
+@property (nonatomic, copy) NSArray* channels;
 
 /** Sets the documents to specify as part of the replication. */
 @property (copy) NSArray *doc_ids;
@@ -92,7 +99,18 @@ typedef enum {
     and optionally "signature_method". */
 @property (nonatomic, copy) NSDictionary* OAuth;
 
-/** The base URL of the remote server, for use as the "origin" parameter when requesting Persona authentication. */
+/** Email address for login with Facebook credentials. This is stored persistently in
+    the replication document, but it's not sufficient for login (you also need to get a
+    token from Facebook's servers, which you then pass to -registerPersonaAssertion:.)*/
+@property (nonatomic, copy) NSString* facebookEmailAddress;
+
+/** Registers a Facebook login token that will be used on the next login to the remote server.
+    This also sets facebookEmailAddress. */
+- (bool) registerFacebookToken: (NSString*)token
+               forEmailAddress: (NSString*)email                        __attribute__((nonnull));
+
+/** The base URL of the remote server, for use as the "origin" parameter when requesting Persona or
+    Facebook authentication. */
 @property (readonly) NSURL* personaOrigin;
 
 /** Email address for remote login with Persona (aka BrowserID). This is stored persistently in
@@ -110,6 +128,13 @@ typedef enum {
     that should last significantly longer before needing to be renewed. */
 - (bool) registerPersonaAssertion: (NSString*)assertion               __attribute__((nonnull));
 
+/** Adds additional SSL root certificates to be trusted by the replicator, or entirely overrides the
+    OS's default list of trusted root certs.
+    @param certs  An array of SecCertificateRefs of root certs that should be trusted. Most often
+        these will be self-signed certs, but they might also be the roots of nonstandard CAs.
+    @param onlyThese  If NO, the given certs are appended to the system's built-in list of trusted
+        root certs; if YES, it replaces them (so *only* the given certs will be trusted.) */
++ (void) setAnchorCerts: (NSArray*)certs onlyThese: (BOOL)onlyThese;
 
 #pragma mark - STATUS:
 
