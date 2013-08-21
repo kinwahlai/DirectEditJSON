@@ -44,7 +44,7 @@
 
     if (self.detailItem) {
         CBLQueryRow *row = (CBLQueryRow *)self.detailItem;
-        self.jsonTextView.text = [CBLJSON stringWithJSONObject: row.value options: CBLJSONWritingAllowFragments error: nil];
+        self.jsonTextView.text = [CBLJSON stringWithJSONObject: row.documentProperties options: CBLJSONWritingAllowFragments error: nil];
     }
 }
 

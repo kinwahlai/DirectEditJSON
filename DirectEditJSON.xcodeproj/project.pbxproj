@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		8B6FF03917C4854A00B7F6F4 /* CBLJSONValidator.m in Sources */ = {isa = PBXBuildFile; fileRef = 8B6FF03817C4854A00B7F6F4 /* CBLJSONValidator.m */; };
 		8BBD89E317840E150059AC5B /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8BBD89E217840E150059AC5B /* Foundation.framework */; };
 		8BBD89E517840E150059AC5B /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8BBD89E417840E150059AC5B /* CoreGraphics.framework */; };
 		8BBD89E717840E150059AC5B /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8BBD89E617840E150059AC5B /* UIKit.framework */; };
@@ -46,6 +47,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		8B6FF03717C4854A00B7F6F4 /* CBLJSONValidator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CBLJSONValidator.h; sourceTree = "<group>"; };
+		8B6FF03817C4854A00B7F6F4 /* CBLJSONValidator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CBLJSONValidator.m; sourceTree = "<group>"; };
 		8BBD89DF17840E150059AC5B /* DirectEditJSON.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = DirectEditJSON.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		8BBD89E217840E150059AC5B /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		8BBD89E417840E150059AC5B /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
@@ -217,6 +220,8 @@
 		8BBD8A53178418CB0059AC5B /* Extras */ = {
 			isa = PBXGroup;
 			children = (
+				8B6FF03717C4854A00B7F6F4 /* CBLJSONValidator.h */,
+				8B6FF03817C4854A00B7F6F4 /* CBLJSONValidator.m */,
 			);
 			name = Extras;
 			path = "vendor/couchbase-ios-lite/Extras";
@@ -326,6 +331,7 @@
 				8BBD89EF17840E150059AC5B /* main.m in Sources */,
 				8BBD8A2D17840F300059AC5B /* CouchbaseHelper.m in Sources */,
 				8BBD89FC17840E150059AC5B /* DetailViewController.m in Sources */,
+				8B6FF03917C4854A00B7F6F4 /* CBLJSONValidator.m in Sources */,
 				8BBD8A2E17840F300059AC5B /* LoginController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

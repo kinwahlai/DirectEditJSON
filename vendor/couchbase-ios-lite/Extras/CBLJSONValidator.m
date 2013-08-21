@@ -17,7 +17,7 @@
 
 
 #import "CBLJSONValidator.h"
-#import "CBLJSON.h"
+#import <CouchbaseLite/CBLJSON.h>
 
 
 #define kJSONSchemaSchemaURLStr @"http://json-schema.org/draft-04/schema"

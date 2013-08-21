@@ -66,8 +66,8 @@ static dispatch_once_t once_token = 0;
 {
     // all categories
     [[self.database viewNamed:@"allDocuments"] setMapBlock:MAPBLOCK({
-        emit(doc[@"id"],doc);
-    }) reduceBlock:nil version:@"0.1"];
+        emit(doc[@"id"],NULL);
+    }) reduceBlock:nil version:@"0.3"];
 }
 
 #pragma mark -
@@ -76,6 +76,7 @@ static dispatch_once_t once_token = 0;
 {
     CBLQuery* query = [[self.database viewNamed: @"allDocuments"] query];
     query.descending = YES;
+    query.prefetch = YES;
     return query;
 }
 
