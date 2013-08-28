@@ -99,5 +99,19 @@
     self.detailViewController.detailItem = row;
 }
 
-
+-(void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    if (editingStyle == UITableViewCellEditingStyleDelete) {
+        CBLQueryRow *row = [_objects objectAtIndex:indexPath.row];
+        [_objects removeObjectAtIndex:indexPath.row];
+        NSError *error;
+        [row.document deleteDocument:&error];
+        if (!error) {
+            row = nil;
+        }
+        [tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationFade];
+    } else if (editingStyle == UITableViewCellEditingStyleInsert) {
+        // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view.
+    }
+}
 @end

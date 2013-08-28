@@ -84,7 +84,7 @@
         [super setEditing:editing animated:animated];
         if (editing) {
             CBLQueryRow *row = (CBLQueryRow *)self.detailItem;
-            originalJSONString = [CBLJSON stringWithJSONObject: row.value options: CBLJSONWritingAllowFragments error: nil];
+            originalJSONString = [CBLJSON stringWithJSONObject: row.documentProperties options: CBLJSONWritingAllowFragments error: nil];
             
             UIBarButtonItem *cancel = [[UIBarButtonItem alloc]initWithBarButtonSystemItem:UIBarButtonSystemItemCancel target:self action:@selector(cancelEdit)];
             UIBarButtonItem *save = [[UIBarButtonItem alloc]initWithBarButtonSystemItem:UIBarButtonSystemItemSave target:self action:@selector(saveEdit)];
@@ -105,7 +105,7 @@
 {
     if (self.detailItem) {
         CBLQueryRow *row = (CBLQueryRow *)self.detailItem;
-        self.jsonTextView.text = [CBLJSON stringWithJSONObject: row.value options: CBLJSONWritingAllowFragments error: nil];
+        self.jsonTextView.text = [CBLJSON stringWithJSONObject: row.documentProperties options: CBLJSONWritingAllowFragments error: nil];
     }
     originalJSONString = nil;
 }
